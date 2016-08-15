@@ -36,7 +36,6 @@
 				$scope.contatos = [
 					{nome: "Marcello", telefone: '99127-3669'},
 					{nome: "Adriana", telefone: '98200-9193'},
-					{nome: "Marcello Jr", telefone: '99127-3669'}
 				];
 
 				$scope.operadoras = [
@@ -48,7 +47,6 @@
 				$scope.adicionarContato = function(contato) {
 					$scope.contatos.push(angular.copy(contato));
 					delete $scope.contato;
-					
 				};
 
 				$scope.apagarContatos = function(contatos){
