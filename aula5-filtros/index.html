@@ -7,7 +7,7 @@
 
 	<style type="text/css">
 		.jumbotron {
-			width: 400px;
+			width: 600px;
 			text-align: center;
 			margin-right: auto;
 			margin-left: auto;
@@ -34,9 +34,9 @@
 			angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope){
 				$scope.app = "Lista Telefônica";
 				$scope.contatos = [
-					{nome: "Marcello", telefone: '99127-3669'},
-					{nome: "Adriana", telefone: '98200-9193'},
-					{nome: "Marcello Jr", telefone: '99127-3669'}
+					{nome: "Marcello", data: new Date(), telefone: '99127-3669'},
+					{nome: "Adriana", data: new Date(), telefone: '98200-9193'},
+					{nome: "Marcello Jr", data: new Date(), telefone: '99127-3669'}
 				];
 
 				$scope.operadoras = [
@@ -69,19 +69,22 @@
 	<body ng-controller="listaTelefonicaCtrl">
 		<div class="jumbotron">
 			<h3 ng-bind="app"></h3>
+			<input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando?">
 			<table class="table">
 				<tr>
 					<th></th>
 					<th>Nome</th>
 					<th>Telefone:</th>
 					<th>Operadora:</th>
+					<th>Data:</th>
 				</tr>
 
-				<tr ng-class="{selecionado: contato.selecionado, negrito: contato.selecionado}" ng-repeat="contato in contatos">
+				<tr ng-class="{selecionado: contato.selecionado, negrito: contato.selecionado}" ng-repeat="contato in contatos | filter: criterioDeBusca | orderBy: 'nome'">
 					<td><input type="checkbox" ng-model="contato.selecionado"/></td>
 					<td>{{contato.nome}}</td>
 					<td>{{contato.telefone}}</td>
 					<td>{{contato.operadora.nome}}</td>
+					<td>{{contato.data | date}}</td>
 				</tr>
 				<hr/>
 			</table>
